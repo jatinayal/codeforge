@@ -3,7 +3,7 @@ services:
     name: codeforge-frontend
     env: static
     buildCommand: npm run build
-    staticPublishPath: ./build
+    staticPublishPath: ./dist
     envVars:
-      - key: REACT_APP_API_URL
+      - key: VITE_API_URL
         value: https://codeforge-2-1ez1.onrender.com
