@@ -14,7 +14,7 @@ const videoRouter = require('./routes/videoCreator');
 // Configure CORS for both development and production
 const allowedOrigins = [
   'http://localhost:5173', // Your local development URL
-  'https://codeforge-3-rvwm.onrender.com/' // Your deployed frontend URL - REPLACE WITH YOUR ACTUAL FRONTEND URL
+  'https://codeforge-3-rvwm.onrender.com' // REMOVED TRAILING SLASH
 ];
 
 app.use(cors({
@@ -22,11 +22,14 @@ app.use(cors({
     // Allow requests with no origin (like mobile apps, curl requests)
     if (!origin) return callback(null, true);
     
-    if (allowedOrigins.indexOf(origin) === -1) {
+    // Check if origin is in allowed origins
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      return callback(null, true);
+    } else {
+      console.log('Blocked by CORS:', origin);
       const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
       return callback(new Error(msg), false);
     }
-    return callback(null, true);
   },
   credentials: true
 }));
@@ -40,6 +43,11 @@ app.use("/submission",submitRouter);
 app.use('/chat', ChatAi); 
 app.use("/video",videoRouter); 
 
+// Add a health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'OK', message: 'Server is running' });
+});
+
 const InitializeConnection = async () =>{
     try{
         await Promise.all([main(), redisClient.connect()]);
@@ -51,6 +59,7 @@ const InitializeConnection = async () =>{
     }
     catch(err){
         console.log("Error:", err.message);
+        process.exit(1); // Exit process on error
     }
 };
 
