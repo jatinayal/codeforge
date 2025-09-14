@@ -9,6 +9,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import dayjs from 'dayjs';
+import logoCf from '../assets/logoCF2.png'
 
 function Homepage() {
      
@@ -221,7 +222,7 @@ const secondsLeft = Math.max(0, Math.floor((start - now) / 1000));
         {/* Left: Logo + Nav */}
         <div className="flex items-center space-x-8">
           <div className="flex items-center">
-            <img src="/src/assets/logoCF2.png" alt="CodeForge Logo" className="h-9 mb-1" />
+            <img src={logoCf} alt="CodeForge Logo" className="h-9 mb-1" />
           </div>
 
           <div className="hidden md:flex space-x-6">
@@ -730,7 +731,7 @@ const secondsLeft = Math.max(0, Math.floor((start - now) / 1000));
       {/* Brand section */}
       <div className="lg:col-span-1">
         <div className="flex items-center mb-4">
-          <img src="/src/assets/logoCF2.png" alt="CodeForge Logo" className="h-10 mr-2" />
+          <img src={logoCf} alt="CodeForge Logo" className="h-10 mr-2" />
           <span className="text-2xl font-bold text-[#FFD33D]">CodeForge</span>
         </div>
         <p className="text-gray-400 mb-6 max-w-md">

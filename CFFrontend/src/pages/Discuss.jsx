@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import discusslogo from '../assets/Discusslogo.png';
+import postO from '../assets/image.png';
+import postT from '../assets/Discuss2.png';
 import { 
   ArrowLeft, 
   Heart, 
@@ -29,7 +32,7 @@ const Discuss = () => {
       likes: 143,
       comments: 36,
       reposts: 12,
-      image: 'src/assets/image.png'
+      image: {postO}
     },
     {
   id: 2,
@@ -41,7 +44,7 @@ const Discuss = () => {
   likes: 42,
   comments: 7,
   reposts: 3,
-  image: 'src/assets/Discuss2.png'
+  image: {postT}
 }
 
   ];
@@ -67,7 +70,7 @@ const Discuss = () => {
     </button>
 
     <div className="flex flex-row items-center">
-      <img src="/src/assets/Discusslogo.png" alt="Discuss Logo" className="w-10 h-10 mb-1" />
+      <img src={discusslogo} alt="Discuss Logo" className="w-10 h-10 mb-1" />
       <h1 className="text-xl font-bold text-white">Discuss</h1>
     </div>
 

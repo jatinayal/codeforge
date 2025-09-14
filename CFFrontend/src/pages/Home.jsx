@@ -3,6 +3,9 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { Code, Users, Trophy, Star, ArrowRight, Bell, ChevronRight, ChevronDown, Flame, TrendingUp, Shield, Zap, List, CheckCircle, XCircle, Crown, Diamond, Gem, Dot, BellDot, HelpCircle, BookOpen, MessageCircle, FileText, Send, MapPin, Heart } from 'lucide-react';
 import { useSelector } from 'react-redux';
 import { FaGithub, FaLinkedin, FaTwitter, FaYoutube } from 'react-icons/fa';
+import homeHero from '../assets/homeHero.png';
+import logoCF from '../assets/logoCF2.png';
+import heroVideo from '../assets/herovid.mp4'
 
 const Home = () => {
   const navigate = useNavigate();
@@ -32,7 +35,7 @@ const Home = () => {
               {/* Left: Logo + Nav */}
               <div className="flex items-center space-x-8">
                 <div className="flex items-center">
-                  <img src="/src/assets/logoCF2.png" alt="CodeForge Logo" className="h-9 mb-1" />
+                  <img src={homeHero} alt="CodeForge Logo" className="h-9 mb-1" />
                 </div>
       
                 <div className="hidden md:flex space-x-6">
@@ -130,7 +133,7 @@ const Home = () => {
   
   <div className="flex items-center justify-center mb-6">
     <img 
-      src="/src/assets/logoCF2.png" 
+      src={logoCF} 
       alt="CodeForge Logo" 
       className="h-16 md:h-20 mr-4" 
     />
@@ -205,11 +208,11 @@ const Home = () => {
             style={{ objectFit: 'cover' }}
           >
             {/* Add multiple sources for better browser compatibility */}
-            <source src="/src/assets/herovid.mp4" type="video/mp4" />
-            <source src="/src/assets/herovid.webm" type="video/webm" />
+            <source src={heroVideo} type="video/mp4" />
+            <source src={heroVideo} type="video/webm" />
             {/* Fallback image if video doesn't load */}
             <img 
-              src="/src/assets/homeHero.png" 
+              src={homeHero} 
               alt="CodeForge Compiler Interface" 
               className="w-full h-auto"
             />
@@ -524,7 +527,7 @@ const Home = () => {
             {/* Brand section */}
             <div className="lg:col-span-1">
               <div className="flex items-center mb-4">
-                <img src="/src/assets/logoCF2.png" alt="CodeForge Logo" className="h-10 mr-2" />
+                <img src={logoCF} alt="CodeForge Logo" className="h-10 mr-2" />
                 <span className="text-2xl font-bold text-[#FFD33D]">CodeForge</span>
               </div>
               <p className="text-gray-400 mb-6 max-w-md">
