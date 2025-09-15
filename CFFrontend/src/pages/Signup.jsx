@@ -4,6 +4,7 @@ import { z } from "zod";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
+import logoCF from '../assets/logoCF2.png'
 import { registerUser } from "../authSlice";
 import { 
   Eye, 
@@ -118,7 +119,7 @@ function Signup() {
           <div className="text-center mb-6">
             <div className="flex items-center justify-center mb-4">
               <img 
-                src="/src/assets/logoCF2.png" 
+                src={logoCF} 
                 alt="CodeForge Logo" 
                 className="h-10 mr-2" 
               />

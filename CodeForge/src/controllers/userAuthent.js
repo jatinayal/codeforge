@@ -47,11 +47,11 @@ const register = async(req, res) => {
 
         // Set cookie  
         res.cookie('token', token, {
-            maxAge: 60 * 60 * 1000,
-            httpOnly: true, // Prevents XSS attacks
-            secure: process.env.NODE_ENV === 'production', // HTTPS only in production
-            sameSite: 'strict' // CSRF protection
-        });
+  maxAge: 60 * 60 * 1000,
+  httpOnly: true, 
+  secure: process.env.NODE_ENV === 'production', 
+  sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax' 
+});
 
         console.log('8. Cookie set');
         
@@ -124,12 +124,12 @@ const login = async (req, res) => {
         );
 
         // Set cookie
-        res.cookie('token', token, {
-            maxAge: 60 * 60 * 1000,
-            httpOnly: true, // Prevents XSS attacks
-            secure: process.env.NODE_ENV === 'production', // HTTPS only in production
-            sameSite: 'strict' // CSRF protection
-        });
+           res.cookie('token', token, {
+  maxAge: 60 * 60 * 1000,
+  httpOnly: true, 
+  secure: process.env.NODE_ENV === 'production', 
+  sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax' 
+});
 
         // Send response
         res.status(200).json({

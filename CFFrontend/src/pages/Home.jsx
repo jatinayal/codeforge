@@ -35,7 +35,7 @@ const Home = () => {
               {/* Left: Logo + Nav */}
               <div className="flex items-center space-x-8">
                 <div className="flex items-center">
-                  <img src={homeHero} alt="CodeForge Logo" className="h-9 mb-1" />
+                  <img src={logoCF} alt="CodeForge Logo" className="h-9 mb-1" />
                 </div>
       
                 <div className="hidden md:flex space-x-6">
