@@ -243,5 +243,60 @@ const submittedProblem = async(req, res)=>{
     }
 }
 
+const getAllSubmissionsByUser = async (req, res) => {
+    try {
+        const userId = req.result._id;
+        
+        // Get pagination parameters from query string
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+        const skip = (page - 1) * limit;
+        
+        // Get sorting parameters
+        const sortBy = req.query.sortBy || 'createdAt';
+        const sortOrder = req.query.sortOrder === 'asc' ? 1 : -1;
+        
+        // Build the query
+        const query = { userId };
+        
+        // If filtering by status
+        if (req.query.status) {
+            query.status = req.query.status;
+        }
+        
+        // If filtering by language
+        if (req.query.language) {
+            query.language = req.query.language;
+        }
+        
+        // If filtering by problem ID
+        if (req.query.problemId) {
+            query.problemId = req.query.problemId;
+        }
+        
+        // Get submissions with pagination and sorting
+        const submissions = await Submissions.find(query)
+            .populate('problemId', 'title difficulty tags') // Populate problem details
+            .sort({ [sortBy]: sortOrder })
+            .skip(skip)
+            .limit(limit);
+            
+        // Get total count for pagination
+        const total = await Submissions.countDocuments(query);
+        
+        res.status(200).json({
+            submissions,
+            pagination: {
+                page,
+                limit,
+                total,
+                pages: Math.ceil(total / limit)
+            }
+        });
+    } catch (error) {
+        console.error('Error fetching user submissions:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
 
-module.exports = {createProblem,updateProblem,deleteProblem,getProblemById,getAllProblem,solvedAllProblembyUser,submittedProblem};
+module.exports = {createProblem,updateProblem,deleteProblem,getProblemById,getAllProblem,solvedAllProblembyUser,submittedProblem,getAllSubmissionsByUser};
