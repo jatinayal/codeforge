@@ -8,6 +8,7 @@ import Editorial from './Editorial';
 import { TreeDeciduous, Flower2, Sprout , Tags, FileText, BookOpen, Code2, ListChecks, MessageCircle , ScrollText , RotateCcw , Shuffle, User, Pause, Square, ListVideo , ChevronDown, Flame , CloudUpload , Play, CheckCircle, Circle, Settings, ChevronRight, ChevronLeft, Clock, Cpu, List, Pen, Code, Copy, FlaskConical, PanelLeftClose, Crown, ThumbsUp, ThumbsDown } from 'lucide-react';
 import Submission from './Submission';
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
+import logoCF from '../assets/logoCF2.png';
 
 
 function ProblemPage() {
@@ -344,7 +345,7 @@ const navigateToProblem = (direction) => {
           {/* Left Section */}
           <div className="flex items-center space-x-6 mr-28">
             <NavLink to="/" className="flex items-center">
-              <img src="/src/assets/logoCF2.png" alt="CodeForge Logo" className="h-9 mb-1" />
+              <img src={logoCF} alt="CodeForge Logo" className="h-9 mb-1" />
             </NavLink>
     
            <NavLink 
