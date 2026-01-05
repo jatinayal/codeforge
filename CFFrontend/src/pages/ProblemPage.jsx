@@ -124,7 +124,6 @@ useEffect(() => {
       try {
         const { data } = await axiosClient.get(`/problem/problembyid/${problemId}`);
         setProblem(data);
-        console.log('Problem data:', data);
         
         // Set initial code based on selected language
         const initialCode = data.startCode.find(sc => 
