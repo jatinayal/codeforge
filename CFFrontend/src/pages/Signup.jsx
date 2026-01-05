@@ -44,11 +44,12 @@ function Signup() {
     handleSubmit,
     formState: { errors },
     setError,
+    watch,
   } = useForm({ resolver: zodResolver(signupSchema) });
+const agreeToTerms = watch("agreeToTerms");
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [particles, setParticles] = useState([]);
   
   useEffect(() => {
@@ -225,24 +226,28 @@ function Signup() {
             {/* Terms and Conditions */}
             <div className="space-y-2">
               <label className="flex items-start gap-2 cursor-pointer">
-                <button
-                  type="button"
-                  onClick={() => setAgreeToTerms(!agreeToTerms)}
-                  className="text-yellow-500 focus:outline-none mt-1"
-                >
-                  {agreeToTerms ? <CheckSquare size={20} /> : <Square size={20} />}
-                </button>
-                <input
-                  {...register("agreeToTerms")}
-                  type="checkbox"
-                  checked={agreeToTerms}
-                  onChange={() => setAgreeToTerms(!agreeToTerms)}
-                  className="hidden"
-                />
-                <span className="text-gray-300 text-sm">
-                  I agree to the <Link to="/terms" className="text-yellow-500 hover:underline">Terms and Conditions</Link> and <Link to="/privacy" className="text-yellow-500 hover:underline">Privacy Policy</Link>
-                </span>
-              </label>
+  <span className="text-yellow-500 mt-1">
+    {agreeToTerms ? <CheckSquare size={20} /> : <Square size={20} />}
+  </span>
+
+  <input
+    type="checkbox"
+    {...register("agreeToTerms")}
+    className="hidden"
+  />
+
+  <span className="text-gray-300 text-sm">
+    I agree to the{" "}
+    <Link to="/terms" className="text-yellow-500 hover:underline">
+      Terms and Conditions
+    </Link>{" "}
+    and{" "}
+    <Link to="/privacy" className="text-yellow-500 hover:underline">
+      Privacy Policy
+    </Link>
+  </span>
+</label>
+
               {errors.agreeToTerms && (
                 <p className="text-red-500 text-sm flex items-center gap-1">
                   <AlertCircle size={14} />
