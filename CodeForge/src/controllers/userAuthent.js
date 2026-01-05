@@ -331,6 +331,7 @@ const getAllUser = async (req, res) => {
                     lastName: 1,
                     emailId: 1,
                     age: 1,
+                    profileImage: 1,
                     role: 1,
                     problemSolvedCount: { $size: "$problemSolved" },
                     createdAt: 1
