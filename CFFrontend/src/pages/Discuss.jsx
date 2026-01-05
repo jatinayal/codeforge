@@ -32,7 +32,7 @@ const Discuss = () => {
       likes: 143,
       comments: 36,
       reposts: 12,
-      image: {postO}
+      image: postO
     },
     {
   id: 2,
@@ -44,7 +44,7 @@ const Discuss = () => {
   likes: 42,
   comments: 7,
   reposts: 3,
-  image: {postT}
+  image: postT
 }
 
   ];
