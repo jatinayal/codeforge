@@ -28,7 +28,7 @@ app.use(cookieParser());
 app.use("/user", authRouter);
 app.use("/problem", problemRouter); 
 app.use("/submission",submitRouter);
-app.use('/chat', ChatAi); 
+app.post('/chat', ChatAi); 
 app.use("/video",videoRouter); 
 
 // Add a health check endpoint
