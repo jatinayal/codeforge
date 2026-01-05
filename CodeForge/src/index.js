@@ -48,19 +48,34 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'OK', message: 'Server is running' });
 });
 
-const InitializeConnection = async () =>{
-    try{
-        await Promise.all([main(), redisClient.connect()]);
-        console.log("DB Connected");
+const InitializeConnection = async () => {
+  try {
+    // Connect MongoDB (critical)
+    await main();
+    console.log("MongoDB Connected");
 
-         app.listen(process.env.PORT, '0.0.0.0', () => {
-           console.log("Server is listening at port: " + process.env.PORT)
-         });
+    // Connect Redis (non-blocking)
+    if (process.env.REDIS_HOST || process.env.REDIS_URL) {
+      try {
+        await redisClient.connect();
+        console.log("Redis Connected");
+      } catch (err) {
+        console.log("Redis connection failed (skipping):", err.message);
+      }
+    } else {
+      console.log("Redis not configured, skipping");
     }
-    catch(err){
-        console.log("Error:", err.message);
-        process.exit(1); // Exit process on error
-    }
+
+    const PORT = process.env.PORT || 5000;
+
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log("Server is listening at port:", PORT);
+    });
+
+  } catch (err) {
+    console.log("Fatal Error:", err.message);
+    process.exit(1); // Only exit if MongoDB fails
+  }
 };
 
 InitializeConnection();
