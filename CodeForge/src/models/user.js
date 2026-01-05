@@ -31,13 +31,15 @@ const userSchema = new Schema({
         enum: ['user', 'admin'],
         default: 'user'
     },
-    problemSolved: { 
-        type: [{
-            type: Schema.Types.ObjectId,
-            ref: 'problem',
-            unique: true
-        }] // REMOVED: unique: true, ADDED: default: []
-    },
+    problemSolved: {
+  type: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Problem'
+    }
+  ],
+  default: []
+},
     password: {
         type: String,
         required: true
