@@ -14,7 +14,7 @@ async function generateAIResponse(prompt) {
 
     // Generate response from Gemini
     const response = await ai.models.generateContent({ 
-      model: "gemini-3-pro-preview",
+      model: "models/gemini-2.5-flash",
       contents: conversationHistory,
     });
 
