@@ -24,7 +24,10 @@ const adminMiddleware = async (req, res, next) =>{
         if(!result)
             throw new Error("User Doesn't Exist");
         
-        const IsBlocked = await redisClient.exists(`token:${token}`);
+        let IsBlocked = false;
+        if (redisClient && redisClient.isReady) {
+            IsBlocked = await redisClient.exists(`token:${token}`);
+        }
 
         if(IsBlocked)
             throw new Error("Invalid Token");

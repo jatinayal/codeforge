@@ -53,7 +53,7 @@ const InitializeConnection = async () => {
     // Redis (NON-BLOCKING, AFTER SERVER START)
     if (redisClient) {
       redisClient.connect()
-        .then(() => console.log("Redis ready"))
+        .then(() => console.log("Redis connect initialized"))
         .catch(err => console.log("Redis skipped:", err.message));
     }
 

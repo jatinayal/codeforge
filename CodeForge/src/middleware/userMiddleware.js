@@ -25,7 +25,11 @@ const userMiddleware = async (req, res, next) => {
         }
 
         // Check if token is blocked
-        const isBlocked = await redisClient.exists(`token:${token}`);
+        let isBlocked = false;
+        if (redisClient && redisClient.isReady) {
+            isBlocked = await redisClient.exists(`token:${token}`);
+        }
+
         if (isBlocked) {
             return res.status(401).json({ error: "Session expired" });
         }

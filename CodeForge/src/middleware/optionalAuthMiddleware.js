@@ -29,7 +29,11 @@ const optionalAuthMiddleware = async (req, res, next) => {
         }
 
         // Check if token is blocked in Redis
-        const isTokenBlocked = await redisClient.exists(`token:${token}`);
+        let isTokenBlocked = false;
+        if (redisClient && redisClient.isReady) {
+            isTokenBlocked = await redisClient.exists(`token:${token}`);
+        }
+        
         if (isTokenBlocked) {
             req.user = null;
             return next();
